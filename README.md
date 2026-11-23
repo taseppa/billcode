@@ -1,6 +1,8 @@
 # billcode
 
-Pay Finnish PDF bills without typing. billcode reads the payment details from a bill and gives you three ways to pay it:
+Don't you hate it when a bill arrives as a PDF with no virtual barcode and no QR code? Then you're copying an 18-character IBAN and a 20-digit reference number into your bank by hand, hoping you got every digit right.
+
+billcode fixes that. Give it the PDF and it reads the payment details from the bill, checks them, and gives you three ways to pay without typing:
 
 - the **virtual bank barcode** (*virtuaaliviivakoodi*): 54 digits to paste into online banking (`--copy` puts it on the clipboard)
 - the **bank barcode** (*pankkiviivakoodi*) and the **payment QR code**, drawn in your terminal so you can scan them with your bank's mobile app
