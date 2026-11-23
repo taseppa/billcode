@@ -18,6 +18,13 @@ from . import qr, render, terminal
 
 TEMP_DIR = Path(tempfile.gettempdir()) / "billcode"
 
+# Where the code came from (JSON output keeps the English keys).
+SOURCE_LABELS = {
+    "printed": "valmiina laskulla",
+    "built": "koottu laskun tiedoista",
+    "built (with overrides)": "koottu, osa tiedoista annettu käsin",
+}
+
 
 def _parse_date(s: str) -> date:
     for fmt in ("%d.%m.%Y", "%Y-%m-%d", "%d.%m.%y"):
@@ -66,7 +73,7 @@ def _print_human(path: str, result: Result) -> None:
     print(f"  Viite      : {format_reference(p.reference)}")
     print(f"  Summa      : {f'{p.amount:.2f} €'.replace('.', ',') if p.amount is not None else '(maksaja täyttää)'}")
     print(f"  Eräpäivä   : {p.due.strftime('%d.%m.%Y') if p.due else '-'}")
-    print(f"  Lähde      : {result.source}")
+    print(f"  Lähde      : {SOURCE_LABELS.get(result.source, result.source)}")
     print(f"  Virtuaaliviivakoodi:\n  {result.code}")
 
 

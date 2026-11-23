@@ -1,25 +1,20 @@
 # billcode
 
-Reads a Finnish PDF bill and gives you its **virtuaaliviivakoodi**: the 54-digit virtual bank barcode you can paste into online banking.
+Pay Finnish PDF bills without typing. billcode reads the payment details from a bill and gives you three ways to pay it:
 
-```
-$ billcode lasku.pdf --copy
-lasku.pdf:
-  Saaja IBAN : FI79 4405 2020 0360 82
-  Viite      : 86851 62596 19897
-  Summa      : 48,58 €
-  Eräpäivä   : 15.12.2026
-  Lähde      : built
-  Virtuaaliviivakoodi:
-  479440520200360820000485800000000868516259619897261215
-Copied to clipboard.
-```
+- the **virtual bank barcode** (*virtuaaliviivakoodi*): 54 digits to paste into online banking (`--copy` puts it on the clipboard)
+- the **bank barcode** (*pankkiviivakoodi*) and the **payment QR code**, drawn in your terminal so you can scan them with your bank's mobile app
+- the same codes as print-ready **SVG/PNG** files, at the sizes Finance Finland's guides specify
+
+![billcode demo](docs/demo.gif)
+
+The bill in the demo is [examples/esimerkkilasku.pdf](examples/esimerkkilasku.pdf), a made-up bill that uses Finance Finland's public test account. The barcode and QR code in the animation really scan, so you can try them with your bank app.
 
 ## How it works
 
 1. It extracts the PDF's text with [pdfplumber](https://github.com/jsvine/pdfplumber).
-2. If the bill prints the 54-digit code as text, it validates the code and uses it (`Lähde: printed`).
-3. Otherwise it finds the IBAN, the reference number (national or RF), the amount and the due date, then builds the code (`Lähde: built`).
+2. If the bill prints the 54-digit code as text, it validates the code and uses it (`Lähde: valmiina laskulla`, "ready on the bill").
+3. Otherwise it finds the IBAN, the reference number (national or RF), the amount and the due date, then builds the code (`Lähde: koottu laskun tiedoista`, "built from the bill's details").
 
 Every IBAN and reference number is checksum-validated, so random numbers on the bill are not picked up by mistake. Always compare the result with the bill before paying.
 
