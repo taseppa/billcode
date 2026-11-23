@@ -1,0 +1,27 @@
+[project]
+name = "billcode"
+version = "0.1.0"
+description = "Get the Finnish virtual bank barcode (virtuaaliviivakoodi) from a PDF bill"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "pdfplumber>=0.11",
+    "python-barcode>=0.16.1",
+    "segno>=1.6.6",
+]
+
+[project.scripts]
+billcode = "billcode.cli:main"
+
+[dependency-groups]
+dev = [
+    "pillow>=12.3.0",
+    "pytest>=8",
+    "reportlab>=4",
+    "zxing-cpp>=3.1.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.8,<0.14"]
+build-backend = "uv_build"
