@@ -1,6 +1,6 @@
 # billcode
 
-Don't you hate it when a bill arrives with no virtual barcode and no QR code? billcode fixes that, give it the PDF and it reads the payment details from the bill, checks them, and gives you three ways to pay without typing:
+Don't you hate it when a bill arrives with no virtual barcode or QR code? billcode fixes that, give it the PDF and it reads the payment details from the bill, checks them, and gives you three ways to pay without typing:
 
 - the **virtual bank barcode** (_virtuaaliviivakoodi_): 54 digits to paste into online banking (`--copy` puts it on the clipboard)
 - the **bank barcode** (_pankkiviivakoodi_) and the **payment QR code**, drawn in your terminal so you can scan them with your bank's mobile app
