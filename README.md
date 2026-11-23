@@ -1,11 +1,9 @@
 # billcode
 
-Don't you hate it when a bill arrives as a PDF with no virtual barcode and no QR code? Then you're copying an 18-character IBAN and a 20-digit reference number into your bank by hand, hoping you got every digit right.
+Don't you hate it when a bill arrives with no virtual barcode and no QR code? billcode fixes that, give it the PDF and it reads the payment details from the bill, checks them, and gives you three ways to pay without typing:
 
-billcode fixes that. Give it the PDF and it reads the payment details from the bill, checks them, and gives you three ways to pay without typing:
-
-- the **virtual bank barcode** (*virtuaaliviivakoodi*): 54 digits to paste into online banking (`--copy` puts it on the clipboard)
-- the **bank barcode** (*pankkiviivakoodi*) and the **payment QR code**, drawn in your terminal so you can scan them with your bank's mobile app
+- the **virtual bank barcode** (_virtuaaliviivakoodi_): 54 digits to paste into online banking (`--copy` puts it on the clipboard)
+- the **bank barcode** (_pankkiviivakoodi_) and the **payment QR code**, drawn in your terminal so you can scan them with your bank's mobile app
 - the same codes as print-ready **SVG/PNG** files, at the sizes Finance Finland's guides specify
 
 ![billcode demo](docs/demo.gif)
@@ -32,7 +30,7 @@ Use `--json` for machine-readable output.
 
 ## Payment QR code
 
-Alongside the barcode, a payment QR code is made, following Finance Finland's *QR code in credit transfer forms* (EPC QR v001, UTF-8, error correction M, at most version 13). It carries the payee name, BIC, IBAN, amount, reference and due date (`ReqdExctnDt/`).
+Alongside the barcode, a payment QR code is made, following Finance Finland's _QR code in credit transfer forms_ (EPC QR v001, UTF-8, error correction M, at most version 13). It carries the payee name, BIC, IBAN, amount, reference and due date (`ReqdExctnDt/`).
 
 - The QR code requires the payee name and BIC. The name is looked for on the bill (Saaja / Mottagare / Yritys …). The BIC comes from Finance Finland's bank code table (`src/billcode/bic.py`, 16.3.2026), or failing that from the bill.
 - If either is missing, only the barcode is made and a warning is shown. Fix with `--saaja "Firma Oy"` / `--bic NDEAFIHH`, or turn the QR code off with `--no-qr`.
@@ -59,7 +57,7 @@ uv run pytest
 
 ## Spec
 
-The encoder follows Finance Finland's *Bank Bar Code Guide* v5.3, versions 4 and 5. `tests/spec_vectors.json` holds all 18 test invoices from that guide, extracted mechanically from its text, and the encoder and decoder are tested against them.
+The encoder follows Finance Finland's _Bank Bar Code Guide_ v5.3, versions 4 and 5. `tests/spec_vectors.json` holds all 18 test invoices from that guide, extracted mechanically from its text, and the encoder and decoder are tested against them.
 
 ## Limitations
 
